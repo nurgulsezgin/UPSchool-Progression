@@ -1,0 +1,32 @@
+﻿@model List<IPortfolioProject.Models.TblExperience>
+
+<section class="timeline">
+
+    <div class="title-wrapper">
+        <div class="icon-box">
+            <ion-icon name="book-outline"></ion-icon>
+        </div>
+
+        <h3 class="h3">@ViewBag.v1</h3>
+    </div>
+
+    <ol class="timeline-list">
+
+        @foreach (var item in Model)
+        {
+            <li class="timeline-item">
+
+                <h4 class="h4 timeline-item-title">@item.Title</h4>
+
+                <span>@item.BeginningYear — @item.EndingYear</span>
+
+                <p class="timeline-text">
+                    @item.Description
+                </p>
+
+            </li>
+        }
+
+        </ol>
+
+</section>

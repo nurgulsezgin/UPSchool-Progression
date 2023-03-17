@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layouts/_InitialLayoutPage.cshtml";
+}
+
+<!--
+- #RESUME INDEX
+-->
+
+<article class="resume active">
+
+    <header>
+        <h2 class="h2 article-title">@ViewBag.v1</h2>
+    </header>
+
+    @{Html.RenderAction("EducationPartial");}
+    @{Html.RenderAction("ExperiencePartial");}
+    @{Html.RenderAction("SkillsPartial");}
+
+</article>
+

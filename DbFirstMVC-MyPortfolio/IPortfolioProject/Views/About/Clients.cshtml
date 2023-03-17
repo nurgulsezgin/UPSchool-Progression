@@ -1,0 +1,20 @@
+﻿@model List<IPortfolioProject.Models.TblClients>
+
+<section class="clients">
+
+    <h3 class="h3 clients-title">@ViewBag.v1</h3>
+
+    <ul class="clients-list has-scrollbar">
+
+        @foreach (var item in Model)
+        {
+            <li class="clients-item">
+                <a href="@item.Link">
+                    <img src="~/Assets/images/@item.Logo" alt="client logo">
+                </a>
+            </li>
+        }
+
+    </ul>
+
+</section>

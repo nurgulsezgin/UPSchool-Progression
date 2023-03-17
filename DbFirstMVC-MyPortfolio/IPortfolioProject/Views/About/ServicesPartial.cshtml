@@ -1,0 +1,30 @@
+﻿@model List<IPortfolioProject.Models.TblServices>
+
+<section class="service">
+
+    <h3 class="h3 service-title">@ViewBag.v1</h3>
+
+    <ul class="service-list">
+
+        @foreach (var item in Model)
+        {
+            <li class="service-item">
+
+                <div class="service-icon-box">
+                    <img src="~/Assets/images/@item.Icon" alt="icon" width="40">
+                </div>
+
+                <div class="service-content-box">
+                    <h4 class="h4 service-item-title">@item.Title</h4>
+
+                    <p class="service-item-text">
+                        @item.Text
+                </div>
+
+            </li>
+        }
+
+    </ul>
+
+</section>
+

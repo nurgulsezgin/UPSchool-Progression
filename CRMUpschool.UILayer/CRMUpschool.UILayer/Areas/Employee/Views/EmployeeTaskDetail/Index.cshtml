@@ -1,0 +1,27 @@
+﻿@model List<EmployeeTaskDetails>
+@{
+    ViewData["Title"] = "ExcelStatic";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+    int count = 0;
+}
+
+<h3>Görev Detayları</h3>
+<table class="table table-bordered">
+    <tr>
+        <th>Detaylar</th>
+        <th>Tarih</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count ++;
+        <tr>
+            <td> @item.Description</td>
+            <td>@item.Date</td>
+        </tr>
+        <br />
+    }
+</table>
+@if (count == 0)
+{
+    <label>Bu görev için henüz bir detay tanımı yapılmamış</label>
+}

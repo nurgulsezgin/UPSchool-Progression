@@ -1,0 +1,36 @@
+﻿@model List<EmployeeTask>
+@{
+    ViewData["Title"] = "ExcelStatic";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+    int count = 0;
+}
+
+<h1>Görev Listesi</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Durum</th>
+        <th>Tarih</th>
+        <th>Personel</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Title</td>
+            <td>@item.Status</td>
+            <td>@item.Date.ToString("dd.MMM.yyyy")</td>
+            <td>@item.AppUser.Name @item.AppUser.SurName</td>
+            <td><a href="#" class="btn btn-danger">SİL</a></td>
+            <td><a href="#" class="btn btn-success">GÜNCELLE</a></td>
+            <td><a href="#" class="btn btn-dark">DETAYLAR</a></td>
+        </tr>
+    }
+</table>
+<a href="/EmployeeTask/AddTask/" class="btn btn-outline-info">Yeni Görev Girişi</a>

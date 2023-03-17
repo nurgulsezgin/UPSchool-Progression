@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layouts/_InitialLayoutPage.cshtml";
+}
+
+    <!--
+     - #ABOUT INDEX
+    -->
+
+<article class="about  active">
+    <!--
+     -about
+    -->
+
+    @{Html.RenderAction("AboutPartial");}
+
+    <!--
+     - service
+    -->
+
+    @{Html.RenderAction("ServicesPartial");}
+
+    <!--
+     - testimonials
+    -->
+
+    @{Html.RenderAction("Testimonials");}
+
+    <!--
+     - clients
+    -->
+
+    @{Html.RenderAction("Clients");}
+
+</article>
+
+

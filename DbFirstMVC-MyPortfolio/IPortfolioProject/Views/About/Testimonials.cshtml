@@ -1,0 +1,37 @@
+﻿@model List<IPortfolioProject.Models.TblTestimonial>
+
+<section class="testimonials">
+
+    <h3 class="h3 testimonials-title">@ViewBag.v1</h3>
+
+    <ul class="testimonials-list has-scrollbar">
+
+        @foreach (var item in Model)
+        {
+            <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+
+                    <figure class="testimonials-avatar-box">
+                        <img src="~/Assets/images/@item.Avatar" alt="@item.FullName" width="60" data-testimonials-avatar>
+                    </figure>
+
+                    <h4 class="h4 testimonials-item-title" data-testimonials-title>@item.FullName</h4>
+
+                    <div class="testimonials-text" data-testimonials-text>
+                        <p>@item.Text</p>
+                    </div>
+
+                </div>
+            </li>
+        }
+
+    </ul>
+
+</section>
+
+<!--
+- testimonials modal
+-->
+
+@Html.Partial("TestimonialsModal")
+

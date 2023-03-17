@@ -1,0 +1,193 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "NavbarLayout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yemek Tarifleri</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- plugin css for this page -->
+          <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- header -->
+    <div class="container-fluid border bg-pink p-0">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-danger p-2">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="~/assets/pot.png" width="30" height="30" class="d-inline-block align-top" alt="logo" />
+                <span class="ms-2">Yemek Tariflerim</span>
+            </a>
+
+            <div class="collapse navbar-collapse  justify-content-lg-between" id="menu">
+
+                <header>@RenderSection("Menu", false)</header>
+
+
+                <form class="d-flex mt-2 me-5">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
+                <form class="d-flex  mt-2">
+                    <button class="btn btn-outline-danger me-2" type="button">Login</button>
+                    <a role="button" class="btn btn-danger" href="~/UyeOl/UyeOl/">Sign up</a>
+                </form>
+
+            </div>
+        </nav>
+        @RenderBody()
+        <!-- Footer -->
+        <footer class="page-footer text-center text-lg-start text-muted">
+            <!-- Section: Social media -->
+            <section class="d-flex justify-content-center justify-content-lg-between p-4 pb-0 border-bottom">
+                <!-- Left -->
+                <div class="me-5 d-none d-lg-block">
+                    <span>Bizi Takip Et</span>
+                </div>
+                <!-- Left -->
+                <!-- Right -->
+                <div>
+                    <a href="" class="me-4 link-grayish">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="me-4 link-grayish">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="me-4 link-grayish">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="me-4 link-grayish">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="" class="me-4 link-grayish">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="" class="me-4 link-grayish">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <!-- Right -->
+            </section>
+            <!-- Section: Social media -->
+            <!-- Section: Links  -->
+            <section>
+                <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <!-- Content -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                <i class="fas fa-gem me-3 text-grayish"></i>YEMEK TARİFLERİ
+                            </h6>
+                            <p>
+                                Yemek Tarifleri - Tamamı denenmiş binlerce resimli ve videolu yemek tarifi. Çorbalardan ara sıcaklara, zeytinyağlılardan ana yemeklere, salatalara, tatlılardan, kurabiyelere, pastalara kadar tüm yemek çeşitleri. Ayrıca günlük yemek menüleri. Hepsi adım adım fotoğraflı, hergün yeni ve değişik tarifler.
+                            </p>
+                        </div>
+                        <!-- Grid column : End -->
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                Tavsiyeler
+                            </h6>
+                            <p>
+                                <a href="#!" class="text-reset">Top25</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset"> Bugün Ne Pişirsem</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">
+                                    Taze Fikirler
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">
+                                    Dergiler
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">
+                                    Günün Menüsü
+
+                                </a>
+                            </p>
+                        </div>
+                        <!-- Grid column : End -->
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                SSS
+                            </h6>
+                            <p>
+                                <a href="#!" class="text-reset">
+                                    Ünlülerin Tarifleri
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">
+                                    Sağlıklı tavsiyeler
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">
+                                    KVK Aydınlatma Bildirimi
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">
+                                    KVK Politikasi
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">
+                                    Hakkımızda
+
+                                </a>
+                        </div>
+                        <!-- Grid column : End-->
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Contact -->
+                            <h6 class="text-uppercase fw-bold mb-4">İletişim</h6>
+                            <p><i class="fas fa-home me-3 text-grayish"></i> İstanbul,34110, Türkiye</p>
+                            <p>
+                                <i class="fas fa-envelope me-3 text-grayish"></i>
+                                yemektariflerim@gmail.com
+                            </p>
+                            <p><i class="fas fa-phone me-3 text-grayish"></i> + 90 545 xx xx</p>
+                            <p><i class="fas fa-print me-3 text-grayish"></i> + 90 224 xx xx</p>
+                        </div>
+                        <!-- Grid column : End -->
+                    </div>
+                    <!-- Grid row : End -->
+                </div>
+            </section>
+            <!-- Section: Links : End  -->
+            <!-- Copyright -->
+            <div class="text-center p-4" style="background-color: rgba(207, 47, 116, 0.025);">
+                © 2023 Copyright
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer : End -->
+    </div>
+
+</body>
+
+</html>

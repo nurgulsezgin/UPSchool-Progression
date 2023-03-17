@@ -1,0 +1,18 @@
+﻿@model AppUser
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<h1>E-Posta Onay Sayfası</h1>
+<form method="post">
+
+    <label>E-Posta</label>
+    <input type="text" asp-for="Email" class="form-control" />
+
+    @*<label>E-Posta Onay Kodunuz</label>
+    <input type="text" asp-for="MailCode" class="form-control" />*@
+
+    <button type="submit">ONAYLA</button>
+</form>

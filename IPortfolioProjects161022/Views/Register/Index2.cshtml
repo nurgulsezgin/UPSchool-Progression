@@ -1,0 +1,99 @@
+﻿@using IPortfolioProjects161022.Models.Entities;
+@model TblMember
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="col-md-8">
+        @using (Html.BeginForm("Index2", "Register", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+
+            @Html.AntiForgeryToken()
+            <h4>Yeni üyelik formu</h4>
+            <hr />
+            @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+
+            @Html.HiddenFor(m => m.MemberID)
+
+            <div class="form-group">
+                <div class="control-label col-md-2"><b> @Html.LabelFor(m => m.MemberName)</b></div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.MemberName, htmlAttributes: new { @placeHolder = "İsim Giriniz", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MemberName, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MemberSurname, new { @class = "col-sm-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.MemberSurname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MemberSurname, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MemberMail, new { @class = "col-sm-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.MemberMail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MemberMail, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MemberPassword, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.MemberPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MemberPassword, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="btnRegister" class="btn btn-default" value="Register" />
+                </div>
+            </div>
+        }
+    </div>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        document.querySelector('#btnRegister').onclick = function () {
+            let timerInterval
+            Swal.fire({
+                title: 'Auto close alert!',
+                html: 'I will close in <b></b> milliseconds.',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                @ViewBag.Ok="OK"
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+
+    </script>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

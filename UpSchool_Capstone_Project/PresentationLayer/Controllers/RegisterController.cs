@@ -36,8 +36,6 @@ namespace PresentationLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserSignUpModel p)
         {
-            Random rnd = new Random();
-            int number = rnd.Next(100000, 999999);
 
             if (ModelState.IsValid)
             {
@@ -55,7 +53,17 @@ namespace PresentationLayer.Controllers
                     var result = await _userManager.CreateAsync(appUser, p.Password);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("EmailConfirmed", "Register");
+                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+                        var confirmationLink = Url.Action("ConfirmEmail", "Email", new { token, email = appUser.Email }, Request.Scheme);
+                        EmailHelper emailHelper = new EmailHelper();
+                        bool emailResponse = emailHelper.SendEmail(appUser.Email, confirmationLink);
+
+                        if (emailResponse)
+                            return RedirectToAction("Index", "Login");
+                        else
+                        {
+                            // log email failed 
+                        }
                     }
                     else
                     {
@@ -71,7 +79,7 @@ namespace PresentationLayer.Controllers
 
                 }
             }
-            return View();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

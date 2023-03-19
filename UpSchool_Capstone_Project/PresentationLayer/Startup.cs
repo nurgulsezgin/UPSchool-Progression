@@ -54,6 +54,12 @@ namespace PresentationLayer
                 .AddEntityFrameworkStores<RecipeContext>()
                 .AddDefaultTokenProviders()
                 .AddErrorDescriber<RecipeIdentityValidator>();//Identity Error Validation
+            //Identity Confirm Password
+            services.Configure<IdentityOptions>(opts =>
+            {
+                opts.SignIn.RequireConfirmedEmail = true;
+            });
+
             // Type of startup for automapper
             //services.AddAutoMapper(typeof(Startup));
             //services.CustomizeValidator();

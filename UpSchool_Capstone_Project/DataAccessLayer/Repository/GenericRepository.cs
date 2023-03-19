@@ -8,15 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 
 namespace DataAccessLayer.Repository
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
-        //Garbage Collector?
         public void Delete(T t)
         {
-            using (var context = new Context())
+            using (var context = new RecipeContext())
             {
                 context.Remove(t);
                 context.SaveChanges();
@@ -25,7 +25,7 @@ namespace DataAccessLayer.Repository
 
         public T GetById(int id)
         {
-            using (var context = new Context())
+            using (var context = new RecipeContext())
             {
                 return context.Set<T>().Find(id);
             }
@@ -33,7 +33,7 @@ namespace DataAccessLayer.Repository
 
         public List<T> GetList()
         {
-            using (var context = new Context())
+            using (var context = new RecipeContext())
             {
                 return context.Set<T>().ToList();
             }
@@ -41,7 +41,7 @@ namespace DataAccessLayer.Repository
 
         public void Insert(T t)
         {
-            using (var context = new Context())
+            using (var context = new RecipeContext())
             {
                 context.Add(t);
                 context.SaveChanges();
@@ -50,10 +50,11 @@ namespace DataAccessLayer.Repository
 
         public void Update(T t)
         {
-            using (var context = new Context())
+            using (var context = new RecipeContext())
             {
                 context.Update(t);
                 context.SaveChanges();
             }
         }
     }
+}

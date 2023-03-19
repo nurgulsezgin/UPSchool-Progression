@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 using EntityLayer.Concrete;
 
-namespace DataAccessLayer.Abstract
+namespace BusinessLayer.Abstract
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public interface IRecipeIngredientService : IGenericService<RecipeIngredient>
     {
-        List<Recipe> GetRecipeListCategoryId(int id);
     }
 }

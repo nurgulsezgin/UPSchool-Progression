@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using EntityLayer.Concrete;
-
-namespace DataAccessLayer.Abstract
+namespace BusinessLayer.Abstract
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public interface IGenericService<T>
     {
-        List<Recipe> GetRecipeListCategoryId(int id);
+        void TInsert(T t);
+        void TUpdate(T t);
+        void TDelete(T t);
+        List<T> TGetList();
+        T TGetById(int id);
     }
 }

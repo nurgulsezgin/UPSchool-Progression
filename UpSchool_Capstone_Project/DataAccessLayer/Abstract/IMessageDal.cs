@@ -11,8 +11,7 @@ using EntityLayer.Concrete;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public interface IMessageDal:IGenericDal<Message>
     {
-        List<Recipe> GetRecipeListCategoryId(int id);
     }
 }

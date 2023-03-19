@@ -13,6 +13,5 @@ namespace DataAccessLayer.Abstract
 {
     public interface IRecipeDetailDal:IGenericDal<RecipeDetail>
     {
-        void GetRecipeDetailById(int id);
     }
 }

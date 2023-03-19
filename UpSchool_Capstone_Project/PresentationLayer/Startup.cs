@@ -2,23 +2,26 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-using DataAccessLayer.Contexts;
-
+using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using PresentationLayer.Models;
+//using BusinessLayer.DIContainer;
 
+
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BusinessLayer.DIContainer;
+using FluentValidation.AspNetCore;
+//using Microsoft.AspNetCore.Mvc.Authorization;
+//using Microsoft.AspNetCore.Authorization;
+//using FluentValidation.AspNetCore;
 
-using PresentationLayer.Models;
 
 namespace PresentationLayer
 {
@@ -34,9 +37,15 @@ namespace PresentationLayer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //Extensions DIContainers
+            services.ContainerDependencies();
 
-            services.AddDbContext<RecipeContext>();  //register iþlemleri için
+            //FluentValidation
+            services.AddControllersWithViews().AddFluentValidation();
+
+            //DbContext
+            services.AddDbContext<RecipeContext>();
+            //Identity
             services.AddIdentity<AppUser, AppRole>(options =>
             {
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
@@ -44,7 +53,10 @@ namespace PresentationLayer
             })
                 .AddEntityFrameworkStores<RecipeContext>()
                 .AddDefaultTokenProviders()
-                .AddErrorDescriber<RecipeIdentityValidator>();
+                .AddErrorDescriber<RecipeIdentityValidator>();//Identity Error Validation
+            // Type of startup for automapper
+            //services.AddAutoMapper(typeof(Startup));
+            //services.CustomizeValidator();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

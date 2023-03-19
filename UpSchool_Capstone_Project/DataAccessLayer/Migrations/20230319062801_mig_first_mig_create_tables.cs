@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class mig_first : Migration
+    public partial class mig_first_mig_create_tables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,18 +68,22 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RecipeDetails",
+                name: "Messages",
                 columns: table => new
                 {
-                    RecipeDetailID = table.Column<int>(type: "int", nullable: false)
+                    MessageID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MakingDetails = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MessageSubject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MessageContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReceiverName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReceiverEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SenderName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SenderEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeDetails", x => x.RecipeDetailID);
+                    table.PrimaryKey("PK_Messages", x => x.MessageID);
                 });
 
             migrationBuilder.CreateTable(
@@ -205,7 +209,6 @@ namespace DataAccessLayer.Migrations
                     isVegetarian = table.Column<bool>(type: "bit", nullable: false),
                     isVegan = table.Column<bool>(type: "bit", nullable: false),
                     Rating = table.Column<short>(type: "smallint", nullable: false),
-                    RecipeDetailID = table.Column<int>(type: "int", nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -227,25 +230,32 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RecipeIngredients",
+                name: "Comments",
                 columns: table => new
                 {
-                    RecipeIngredientID = table.Column<int>(type: "int", nullable: false)
+                    CommentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Quantity = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RecipeDetailID = table.Column<int>(type: "int", nullable: true)
+                    RecipeID = table.Column<int>(type: "int", nullable: false),
+                    AppUserIdID = table.Column<int>(type: "int", nullable: false),
+                    CommentContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CommentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AppUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeIngredients", x => x.RecipeIngredientID);
+                    table.PrimaryKey("PK_Comments", x => x.CommentID);
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_RecipeDetails_RecipeDetailID",
-                        column: x => x.RecipeDetailID,
-                        principalTable: "RecipeDetails",
-                        principalColumn: "RecipeDetailID",
+                        name: "FK_Comments_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Recipes_RecipeID",
+                        column: x => x.RecipeID,
+                        principalTable: "Recipes",
+                        principalColumn: "RecipeID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -272,6 +282,50 @@ namespace DataAccessLayer.Migrations
                         principalTable: "Recipes",
                         principalColumn: "RecipeID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecipeDetails",
+                columns: table => new
+                {
+                    RecipeDetailID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MakingDetails = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RecipeID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecipeDetails", x => x.RecipeDetailID);
+                    table.ForeignKey(
+                        name: "FK_RecipeDetails_Recipes_RecipeID",
+                        column: x => x.RecipeID,
+                        principalTable: "Recipes",
+                        principalColumn: "RecipeID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecipeIngredients",
+                columns: table => new
+                {
+                    RecipeIngredientID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RecipeDetailID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecipeIngredients", x => x.RecipeIngredientID);
+                    table.ForeignKey(
+                        name: "FK_RecipeIngredients_RecipeDetails_RecipeDetailID",
+                        column: x => x.RecipeDetailID,
+                        principalTable: "RecipeDetails",
+                        principalColumn: "RecipeDetailID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -314,6 +368,16 @@ namespace DataAccessLayer.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_AppUserId",
+                table: "Comments",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_RecipeID",
+                table: "Comments",
+                column: "RecipeID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Favorites_AppUserId",
                 table: "Favorites",
                 column: "AppUserId");
@@ -322,6 +386,11 @@ namespace DataAccessLayer.Migrations
                 name: "IX_Favorites_RecipeId",
                 table: "Favorites",
                 column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeDetails_RecipeID",
+                table: "RecipeDetails",
+                column: "RecipeID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RecipeIngredients_RecipeDetailID",
@@ -357,7 +426,13 @@ namespace DataAccessLayer.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
                 name: "Favorites");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "RecipeIngredients");
@@ -366,10 +441,10 @@ namespace DataAccessLayer.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Recipes");
+                name: "RecipeDetails");
 
             migrationBuilder.DropTable(
-                name: "RecipeDetails");
+                name: "Recipes");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

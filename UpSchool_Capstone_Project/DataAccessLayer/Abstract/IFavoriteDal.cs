@@ -13,6 +13,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IFavoriteDal:IGenericDal<Favorite>
     {
-        List<Favorite> GetFavoritesByUserId(int id);
+        int GetFavoriteCountByRecipeId(int id);
     }
 }

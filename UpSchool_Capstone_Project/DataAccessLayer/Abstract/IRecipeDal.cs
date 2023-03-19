@@ -13,6 +13,5 @@ namespace DataAccessLayer.Abstract
 {
     public interface IRecipeDal : IGenericDal<Recipe>
     {
-        void GetRecipeByCategory();
     }
 }

@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using AutoMapper;
 
 using CRMUpschool.BusinessLayer.Abstract;
 using CRMUpschool.BusinessLayer.Concrete;
@@ -9,7 +8,6 @@ using CRMUpschool.BusinessLayer.ValidationRules.ContactValidation;
 using CRMUpschool.DataAccessLayer.Abstract;
 using CRMUpschool.DataAccessLayer.EntityFramework;
 using CRMUpschool.DTOLayer.DTOs.ContactDTOs;
-using CRMUpschool.EntityLayer.Concrete;
 
 using FluentValidation;
 

@@ -17,14 +17,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.EntityFramework
 {
-    public class EFCategoryDal : GenericRepository<Category>, ICategoryDal
+    public class EFFavoriteDal : GenericRepository<Favorite>, IFavoriteDal
     {
-        public List<Recipe> GetRecipeListCategoryId(int id)
+        public int GetFavoriteCountByRecipeId(int id)
         {
             using (var context = new RecipeContext())
             {
 
-                return context.Recipes.Include(x => x.CategoryID == id).ToList();
+                return context.Favorites.Include(x => x.RecipeId == id).ToList().Count();
             }
         }
     }

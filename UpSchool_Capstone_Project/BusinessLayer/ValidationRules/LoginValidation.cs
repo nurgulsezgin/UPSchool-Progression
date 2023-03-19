@@ -9,10 +9,17 @@ using System.Threading.Tasks;
 
 using EntityLayer.Concrete;
 
-namespace DataAccessLayer.Abstract
+using FluentValidation;
+using FluentValidation.AspNetCore;
+
+namespace BusinessLayer.ValidationRules
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public class LoginValidation : AbstractValidator<AppUser>
     {
-        List<Recipe> GetRecipeListCategoryId(int id);
+        public LoginValidation()
+        {
+            RuleFor(x => x.Email).NotEmpty().WithMessage("Mail alanını boş geçemezsiniz");
+
+        }
     }
 }

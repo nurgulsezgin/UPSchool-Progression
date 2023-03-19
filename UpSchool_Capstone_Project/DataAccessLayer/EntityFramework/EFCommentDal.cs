@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DataAccessLayer.Abstract;
+using DataAccessLayer.Repository;
+
 using EntityLayer.Concrete;
 
-namespace DataAccessLayer.Abstract
+namespace DataAccessLayer.EntityFramework
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public class EFCommentDal : GenericRepository<Comment>, ICommentDal
     {
-        List<Recipe> GetRecipeListCategoryId(int id);
     }
 }

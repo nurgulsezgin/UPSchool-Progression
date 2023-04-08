@@ -41,6 +41,8 @@ namespace BusinessLayer.DIContainer
 
             services.AddScoped<IRecipeService, RecipeManager>();
             services.AddScoped<IRecipeDal, EFRecipeDal>();
+
+            services.AddScoped<IMailService, MailManager>();
         }
     }
 }
